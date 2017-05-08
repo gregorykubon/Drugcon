@@ -39,14 +39,15 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:weightSum="1">
 
                 <Button
                     android:id="@+id/button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:text="Button" />
+                    android:text="Button"
+                    android:layout_weight="0.41" />
 
                 <EditText
                     android:id="@+id/password"
