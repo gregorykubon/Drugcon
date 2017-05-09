@@ -23,7 +23,7 @@ public class Menu extends AppCompatActivity {
 
     private void addListenerOnButton() {
 
-        first = (ImageButton) findViewById(R.id.skull);
+        first = (ImageButton) findViewById(R.id.imageButton4);
 
         first.setOnClickListener(new View.OnClickListener() {
             @Override
