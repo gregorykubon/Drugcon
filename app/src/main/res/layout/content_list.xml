@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.grzegorz.drugcon.List"
-    tools:showIn="@layout/activity_list">
+    tools:showIn="@layout/activity_list"
+    android:background="@drawable/tło">
 
 </android.support.constraint.ConstraintLayout>
