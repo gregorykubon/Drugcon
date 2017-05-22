@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.grzegorz.drugcon.LoginActivity"
+    tools:context="com.example.grzegorz.drugcon.ui.activity.blank.Login"
     android:weightSum="1"
     android:background="@drawable/tlo">
 

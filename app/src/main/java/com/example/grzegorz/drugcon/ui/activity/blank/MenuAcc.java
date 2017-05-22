@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.grzegorz.drugcon.R;
 import com.example.grzegorz.drugcon.presentation.view.blank.MenuAccView;
 import com.example.grzegorz.drugcon.presentation.presenter.blank.MenuAccPresenter;
 
@@ -27,6 +28,7 @@ public class MenuAcc extends MvpActivity implements MenuAccView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_menu_acc);
         setContentView(R.layout.activity_menu_acc);
     }
 }

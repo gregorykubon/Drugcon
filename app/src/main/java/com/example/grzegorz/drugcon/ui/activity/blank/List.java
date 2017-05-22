@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.example.grzegorz.drugcon.presentation.view.blank.ListView;
 import com.example.grzegorz.drugcon.presentation.presenter.blank.ListPresenter;
+import com.example.grzegorz.drugcon.R;
 
 import com.arellomobile.mvp.MvpActivity;
 

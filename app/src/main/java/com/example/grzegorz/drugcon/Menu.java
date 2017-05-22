@@ -38,7 +38,7 @@ public class Menu extends AppCompatActivity {
     }
 
     private void startList(){
-        Intent list = new Intent(this,List.class);
-        startActivity(list);
+  //      Intent list = new Intent(this,List.class);
+  //      startActivity(list);
     }
 }

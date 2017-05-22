@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.grzegorz.drugcon.R;
 import com.example.grzegorz.drugcon.presentation.view.blank.AlarmView;
 import com.example.grzegorz.drugcon.presentation.presenter.blank.AlarmPresenter;
 
