@@ -4,6 +4,10 @@
     <application>
         <activity android:name="com.example.grzegorz.drugcon.blank.Login" />
         <activity android:name="com.example.grzegorz.drugcon.blank.MenuAcc" />
+        <activity android:name="com.example.grzegorz.drugcon.presentation.view.blank.blank.List" />
+        <activity android:name="com.example.grzegorz.drugcon.presentation.blank.List" />
+        <activity android:name="com.example.grzegorz.drugcon.blank.List" />
+        <activity android:name="com.example.grzegorz.drugcon.blank.Alarm" />
     </application>
 
 </manifest>

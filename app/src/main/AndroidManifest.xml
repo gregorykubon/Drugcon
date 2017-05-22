@@ -25,15 +25,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Menu" />
-        <activity
-            android:name=".List"
-            android:label="@string/title_activity_list"
-            android:parentActivityName=".Menu"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.grzegorz.drugcon.Menu" />
-        </activity>
     </application>
 
 </manifest>
