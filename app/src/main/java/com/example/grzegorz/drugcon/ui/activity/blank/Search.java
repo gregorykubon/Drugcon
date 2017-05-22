@@ -5,21 +5,21 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.grzegorz.drugcon.R;
-import com.example.grzegorz.drugcon.presentation.view.blank.ListView;
-import com.example.grzegorz.drugcon.presentation.presenter.blank.ListPresenter;
+import com.example.grzegorz.drugcon.presentation.view.blank.SearchView;
+import com.example.grzegorz.drugcon.presentation.presenter.blank.SearchPresenter;
 
 import com.arellomobile.mvp.MvpActivity;
 
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
-public class List extends MvpActivity implements ListView {
-    public static final String TAG = "List";
+public class Search extends MvpActivity implements SearchView {
+    public static final String TAG = "Search";
     @InjectPresenter
-    ListPresenter mListPresenter;
+    SearchPresenter mSearchPresenter;
 
     public static Intent getIntent(final Context context) {
-        Intent intent = new Intent(context, List.class);
+        Intent intent = new Intent(context, Search.class);
 
         return intent;
     }
@@ -28,6 +28,6 @@ public class List extends MvpActivity implements ListView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_search);
     }
 }

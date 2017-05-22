@@ -9,4 +9,8 @@
     tools:showIn="@layout/activity_list"
     android:background="@drawable/tlo">
 
+
+
+
+
 </android.support.constraint.ConstraintLayout>

@@ -30,6 +30,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.grzegorz.drugcon.ui.activity.blank.MenuAcc;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -146,7 +148,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private void attemptLogin() {
 
-        Intent login = new Intent(this,Menu.class);
+        Intent login = new Intent(this,MenuAcc.class);
         startActivity(login);
 
         if (mAuthTask != null) {
