@@ -31,6 +31,7 @@ public class MenuAcc extends MvpActivity implements MenuAccView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_menu_acc);
         setContentView(R.layout.activity_menu_acc);
 
 
