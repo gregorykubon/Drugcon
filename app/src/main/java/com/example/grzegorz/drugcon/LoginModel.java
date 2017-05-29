@@ -1,5 +1,6 @@
 package com.example.grzegorz.drugcon;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -59,7 +60,7 @@ public class LoginModel extends SQLiteOpenHelper{
             SQLiteDatabase checkDB = null;
             try {
                 String myPath = DB_PATH + DB_NAME;
-                checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+                checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
             } catch (SQLiteException e) {
             }
             if (checkDB != null) {
@@ -88,7 +89,7 @@ public class LoginModel extends SQLiteOpenHelper{
 
             //Open the database
             String myPath = DB_PATH + DB_NAME;
-            myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+            myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
         }
 
         @Override
@@ -114,6 +115,18 @@ public class LoginModel extends SQLiteOpenHelper{
         public Cursor query(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy){
             return myDataBase.query(table, columns, selection, selectionArgs, groupBy, having, orderBy);
         }
+
+        public boolean register(String name,String password){
+            ContentValues values = new ContentValues();
+            values.put("login", name);
+            values.put("password", password);
+            long a =  myDataBase.insert("Account", null, values);
+            if(a!=-1){
+                return true;
+            }
+            return false;
+        }
+
 
         // Add your public helper methods to access and get content from the database.
         // You could return cursors by doing "return myDataBase.query(....)" so it'd be easy

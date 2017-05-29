@@ -2,6 +2,8 @@ package com.example.grzegorz.drugcon.ui.activity.blank;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -13,8 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.example.grzegorz.drugcon.R;
+import com.example.grzegorz.drugcon.DataReader;
 import com.example.grzegorz.drugcon.LoginModel;
+import com.example.grzegorz.drugcon.R;
 import com.example.grzegorz.drugcon.presentation.view.blank.LoginView;
 import com.example.grzegorz.drugcon.presentation.presenter.blank.LoginPresenter;
 
@@ -49,9 +52,14 @@ public class Login extends MvpActivity implements LoginView {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login2);
+        setContentView(R.layout.activity_login);
+
+        final DataReader dr = new DataReader(this);
 
 
+       // Cursor c = null;
+      // mLoginPresenter.openBase(this);
+      //  Toast.makeText(this,"OPENED", Toast.LENGTH_LONG);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -59,11 +67,14 @@ public class Login extends MvpActivity implements LoginView {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    try{
-                        mLoginPresenter.attemptLogin(mEmailView.getText().toString(),mPasswordView.getText().toString());
-                    } catch (IOException e){
-                        e.printStackTrace();
-                    }
+          //          try{
+
+           //             if(mLoginPresenter.attemptLogin(mEmailView.getText().toString(),mPasswordView.getText().toString())){
+
+           //             }
+            //        } catch (IOException e){
+            //            e.printStackTrace();
+            //        }
 
                     return true;
                 }
@@ -71,23 +82,35 @@ public class Login extends MvpActivity implements LoginView {
             }
         });
 
-        Button mLoginButton = (Button) findViewById(R.id.button10);
+        Button mLoginButton = (Button) findViewById(R.id.button12);
         mLoginButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                try {
-                    mLoginPresenter.attemptLogin(mEmailView.getText().toString(),mPasswordView.getText().toString());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        Button mEmailSignInButton = (Button) findViewById(R.id.button12);
-        mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+
+                try {
+                    if(mLoginPresenter.attemptLogin(mEmailView.getText().toString(),mPasswordView.getText().toString(),dr)) {
+                        Intent intent = new Intent(getApplicationContext(), MenuAcc.class);
+                        startActivity(intent);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+        Button mEmailSignInButton = (Button) findViewById(R.id.button10);
+        mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    if(mLoginPresenter.attemptRegister(mEmailView.getText().toString(),mPasswordView.getText().toString(),dr)) {
+                        Toast.makeText(Login.this,"GITES",Toast.LENGTH_LONG).show();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
