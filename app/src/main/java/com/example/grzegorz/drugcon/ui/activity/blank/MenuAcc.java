@@ -39,6 +39,7 @@ public class MenuAcc extends MvpActivity implements MenuAccView {
         button_list.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), List.class);
+                intent.putExtra("login",getIntent().getExtras().getString("login"));
                 startActivity(intent);
 
             }
@@ -56,6 +57,7 @@ public class MenuAcc extends MvpActivity implements MenuAccView {
         button_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Search.class);
+                intent.putExtra("login",getIntent().getExtras().getString("login"));
                 startActivity(intent);
 
             }

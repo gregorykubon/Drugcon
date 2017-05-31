@@ -91,6 +91,7 @@ public class Login extends MvpActivity implements LoginView {
                 try {
                     if(mLoginPresenter.attemptLogin(mEmailView.getText().toString(),mPasswordView.getText().toString(),dr)) {
                         Intent intent = new Intent(getApplicationContext(), MenuAcc.class);
+                        intent.putExtra("login",mEmailView.getText().toString());
                         startActivity(intent);
                     }
                 } catch (IOException e) {
@@ -106,7 +107,7 @@ public class Login extends MvpActivity implements LoginView {
             public void onClick(View view) {
                 try {
                     if(mLoginPresenter.attemptRegister(mEmailView.getText().toString(),mPasswordView.getText().toString(),dr)) {
-                        Toast.makeText(Login.this,"GITES",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Login.this,"Registered successfully",Toast.LENGTH_LONG).show();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

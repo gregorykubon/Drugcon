@@ -1,44 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.grzegorz.drugcon.ui.activity.blank.List"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
     android:background="@drawable/tlo">
 
+    <!-- Editext for Search -->
+    <EditText android:id="@+id/listSearch"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search products.."
+        android:inputType="textVisiblePassword"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="74dp"
-        android:layout_height="74dp"
-        app:backgroundTint="@android:color/holo_red_dark"
-        app:srcCompat="@android:drawable/ic_input_add"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp" />
-
+    <!-- List View -->
     <ListView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        tools:layout_editor_absoluteX="205dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+        android:id="@+id/list_view1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
 
-    <SearchView
-        android:id="@+id/appBarLayout"
-        android:layout_width="368dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

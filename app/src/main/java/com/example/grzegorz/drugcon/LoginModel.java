@@ -120,6 +120,7 @@ public class LoginModel extends SQLiteOpenHelper{
             ContentValues values = new ContentValues();
             values.put("login", name);
             values.put("password", password);
+            values.put("list",",");
             long a =  myDataBase.insert("Account", null, values);
             if(a!=-1){
                 return true;
