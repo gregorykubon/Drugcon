@@ -31,7 +31,7 @@ public class SearchPresenter extends MvpPresenter<SearchView> {
             throw sqle;
         }
 
-        c = myDb.query("drug",null,null,null,null,null,null);
+        c = myDb.query("Drug",null,null,null,null,null,null);
         String products[] = new String[c.getCount()];
         c.moveToFirst();
         int i=0;

@@ -24,7 +24,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
     //The Android's default system path of your application database.
     String DB_PATH = null;
 
-    private static String DB_NAME = "little.db";
+    private static String DB_NAME = "DrugDataBase.db3";
 
     private SQLiteDatabase myDataBase;
 
