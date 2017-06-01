@@ -1,10 +1,25 @@
 package com.example.grzegorz.drugcon.ui.activity.blank;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.OverScroller;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.grzegorz.drugcon.DataReader;
 import com.example.grzegorz.drugcon.R;
@@ -34,12 +49,11 @@ public class List extends MvpActivity implements ListView {
     // List view
     private android.widget.ListView lv;
 
+
     // Listview Adapter
     ArrayAdapter<String> adapter;
 
-    // Search EditText
-    EditText listSearch;
-
+    FloatingActionButton fab;
 
     // ArrayList for Listview
     ArrayList<HashMap<String, String>> productList;
@@ -53,9 +67,49 @@ public class List extends MvpActivity implements ListView {
 
         String products[] = mListPresenter.getList(getIntent().getExtras().getString("login"),dr);
 
-
         lv = (android.widget.ListView) findViewById(R.id.list_view1);
-        listSearch = (EditText) findViewById(R.id.listSearch);
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(List.this);
+                View mView = getLayoutInflater().inflate(R.layout.fragment_add_dialog,null);
+                mBuilder.setTitle("Add a medicine");
+                final CheckBox monday = (CheckBox) mView.findViewById(R.id.checkBox);
+                final CheckBox tuesday = (CheckBox) mView.findViewById(R.id.checkBox2);
+                final CheckBox wednesday = (CheckBox) mView.findViewById(R.id.checkBox3);
+                final CheckBox thursday = (CheckBox) mView.findViewById(R.id.checkBox4);
+                final CheckBox friday = (CheckBox) mView.findViewById(R.id.checkBox5);
+                final CheckBox saturday = (CheckBox) mView.findViewById(R.id.checkBox6);
+                final CheckBox sunday = (CheckBox) mView.findViewById(R.id.checkBox7);
+                final EditText times = (EditText) mView.findViewById(R.id.editText);
+                final EditText form = (EditText) mView.findViewById(R.id.textView2);
+
+
+
+                final Spinner spinner = (Spinner) mView.findViewById(R.id.spinner);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(List.this,android.R.layout.simple_spinner_item,mListPresenter.getNames(dr));
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(adapter);
+                mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                mBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                mBuilder.setView(mView);
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
+            }
+        });
 
         // Adding items to listview
         adapter = new ArrayAdapter<String>(this, R.layout.content_list, R.id.product_name, products);

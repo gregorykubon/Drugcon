@@ -10,6 +10,7 @@ import com.example.grzegorz.drugcon.LoginModel;
 import com.example.grzegorz.drugcon.presentation.view.blank.ListView;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
+import com.example.grzegorz.drugcon.ui.activity.blank.List;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -50,4 +51,34 @@ public class ListPresenter extends MvpPresenter<ListView> {
     }
 
 
+    public String[] getNames(DataReader dr) {
+            Cursor c = null;
+            DatabaseModel myDb = new DatabaseModel(dr.getContext());
+            try {
+                myDb.createDataBase();
+            } catch (IOException ioe) {
+                throw new Error("Unable to create database");
+            }
+            try {
+                myDb.openDataBase();
+            } catch (SQLException sqle) {
+                throw sqle;
+            }
+
+            c = myDb.query("Drug",null,null,null,null,null,null);
+            String products[] = new String[c.getCount()];
+            c.moveToFirst();
+            int i=0;
+            do{
+                products[i]=c.getString(c.getColumnIndex("name"));
+                i++;
+            }while(c.moveToNext());
+
+            c.close();
+            myDb.close();
+
+            return products;
+
+
+    }
 }
