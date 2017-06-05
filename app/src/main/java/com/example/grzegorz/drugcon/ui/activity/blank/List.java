@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.view.Gravity;
@@ -65,9 +66,13 @@ public class List extends MvpActivity implements ListView {
 
         final DataReader dr = new DataReader(this);
 
-        String products[] = mListPresenter.getList(getIntent().getExtras().getString("login"),dr);
+       // String products[] = mListPresenter.getList(getIntent().getExtras().getString("login"),dr);
 
         lv = (android.widget.ListView) findViewById(R.id.list_view1);
+
+        // Adding items to listview
+        adapter = new ArrayAdapter<String>(this, R.layout.content_list, R.id.product_name, mListPresenter.getList(getIntent().getExtras().getString("login"),dr));
+        lv.setAdapter(adapter);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener(){
@@ -83,19 +88,30 @@ public class List extends MvpActivity implements ListView {
                 final CheckBox friday = (CheckBox) mView.findViewById(R.id.checkBox5);
                 final CheckBox saturday = (CheckBox) mView.findViewById(R.id.checkBox6);
                 final CheckBox sunday = (CheckBox) mView.findViewById(R.id.checkBox7);
-                final EditText times = (EditText) mView.findViewById(R.id.editText);
+            //    final EditText times = (EditText) mView.findViewById(R.id.editText);
                 final EditText form = (EditText) mView.findViewById(R.id.textView2);
 
 
 
                 final Spinner spinner = (Spinner) mView.findViewById(R.id.spinner);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(List.this,android.R.layout.simple_spinner_item,mListPresenter.getNames(dr));
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinner.setAdapter(adapter);
+                ArrayAdapter<String> spinneradapter = new ArrayAdapter<String>(List.this,android.R.layout.simple_spinner_item,mListPresenter.getNames(dr));
+                spinneradapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(spinneradapter);
                 mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        String days = "days";
+                        if(monday.isChecked()){days=days.concat("1");}else days=days.concat("0");
+                        if(tuesday.isChecked()){days=days.concat("2");}else days=days.concat("0");
+                        if(wednesday.isChecked()){days=days.concat("3");}else days=days.concat("0");
+                        if(thursday.isChecked()){days=days.concat("4");}else days=days.concat("0");
+                        if(friday.isChecked()) {days=days.concat("5");}else days=days.concat("0");
+                        if(saturday.isChecked()) {days=days.concat("6");}else days=days.concat("0");
+                        if(sunday.isChecked()){days=days.concat("7");}else days=days.concat("0");
+                        if(!form.getText().toString().isEmpty()) days=days.concat("XXX"+form.getText().toString());
+                        mListPresenter.addToList(getIntent().getExtras().getString("login"),spinner.getSelectedItem().toString(),days,dr);
+                //        adapter.add(spinner.getSelectedItem().toString());
+                 //       lv.setAdapter(adapter);
                     }
                 });
                 mBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -110,10 +126,5 @@ public class List extends MvpActivity implements ListView {
                 dialog.show();
             }
         });
-
-        // Adding items to listview
-        adapter = new ArrayAdapter<String>(this, R.layout.content_list, R.id.product_name, products);
-        lv.setAdapter(adapter);
-
     }
 }

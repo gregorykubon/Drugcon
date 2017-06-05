@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -46,6 +47,7 @@ public class LoginModel extends SQLiteOpenHelper{
         public void createDataBase() throws IOException {
             boolean dbExist = checkDataBase();
             if (dbExist) {
+
             } else {
                 this.getReadableDatabase();
                 try {
@@ -62,6 +64,7 @@ public class LoginModel extends SQLiteOpenHelper{
                 String myPath = DB_PATH + DB_NAME;
                 checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
             } catch (SQLiteException e) {
+               e.printStackTrace();
             }
             if (checkDB != null) {
                 checkDB.close();
