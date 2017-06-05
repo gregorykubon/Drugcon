@@ -93,6 +93,8 @@ public class Login extends MvpActivity implements LoginView {
                         Intent intent = new Intent(getApplicationContext(), MenuAcc.class);
                         intent.putExtra("login",mEmailView.getText().toString());
                         startActivity(intent);
+                    }else{
+                        Toast.makeText(Login.this,"Cant login",Toast.LENGTH_LONG).show();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

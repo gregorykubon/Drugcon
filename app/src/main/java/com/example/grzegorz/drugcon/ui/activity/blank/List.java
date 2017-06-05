@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ import android.widget.OverScroller;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.grzegorz.drugcon.DataReader;
@@ -74,6 +76,47 @@ public class List extends MvpActivity implements ListView {
         adapter = new ArrayAdapter<String>(this, R.layout.content_list, R.id.product_name, mListPresenter.getList(getIntent().getExtras().getString("login"),dr));
         lv.setAdapter(adapter);
 
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(final AdapterView<?> parent, final View view, final int position, long id) {
+
+                final String drug = ((TextView) view.findViewById(R.id.product_name)).getText().toString();
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        List.this );
+
+                // set title
+                alertDialogBuilder.setTitle("Confirmation");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Do you want to delete this to your list?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // if this button is clicked, close
+                                // current activity
+                                mListPresenter.delete(getIntent().getExtras().getString("login"),drug,dr);
+                                dialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
+
+            }
+        });
+
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -108,7 +151,7 @@ public class List extends MvpActivity implements ListView {
                         if(friday.isChecked()) {days=days.concat("5");}else days=days.concat("0");
                         if(saturday.isChecked()) {days=days.concat("6");}else days=days.concat("0");
                         if(sunday.isChecked()){days=days.concat("7");}else days=days.concat("0");
-                        if(!form.getText().toString().isEmpty()) days=days.concat("XXX"+form.getText().toString());
+                        if(!form.getText().toString().isEmpty()) days=days.concat("XXX"+form.getText().toString()+"YYY");
                         mListPresenter.addToList(getIntent().getExtras().getString("login"),spinner.getSelectedItem().toString(),days,dr);
                 //        adapter.add(spinner.getSelectedItem().toString());
                  //       lv.setAdapter(adapter);

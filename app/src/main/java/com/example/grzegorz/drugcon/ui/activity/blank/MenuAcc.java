@@ -2,10 +2,12 @@ package com.example.grzegorz.drugcon.ui.activity.blank;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.grzegorz.drugcon.R;
 import com.example.grzegorz.drugcon.presentation.view.blank.MenuAccView;
@@ -34,6 +36,8 @@ public class MenuAcc extends MvpActivity implements MenuAccView {
 //        setContentView(R.layout.activity_menu_acc);
         setContentView(R.layout.activity_menu_acc);
 
+        ImageView logo = (ImageView) findViewById(R.id.imageView);
+        logo.setImageResource(R.drawable.logo_beztla);
 
         ImageButton button_list = (ImageButton) findViewById(R.id.button_list);
         button_list.setOnClickListener(new View.OnClickListener() {

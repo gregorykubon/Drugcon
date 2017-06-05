@@ -131,4 +131,52 @@ public class ListPresenter extends MvpPresenter<ListView> {
             myDb.close();
 
     }
+
+    public void delete(String login, String drug, DataReader dr) {
+        Cursor c = null;
+        LoginModel myDb = new LoginModel(dr.getContext());
+        try {
+            myDb.createDataBase();
+        } catch (IOException ioe) {
+            throw new Error("Unable to create database");
+        }
+        try {
+            myDb.openDataBase();
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
+        //     c = myDb.query("Account", null, null, null, null, null, null);
+        try {
+            c.moveToFirst();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        c = myDb.query("Account", null, null,null, null, null, null);
+        c.moveToFirst();
+        String toUpdate = null;
+
+        do{
+            if (c.getString(c.getColumnIndex("login")).equalsIgnoreCase(login)){
+                //  toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(c.getString(c.getColumnIndex("list"))).toString();
+                toUpdate = c.getString(c.getColumnIndex("list")).toString();
+            }
+        }while(c.moveToNext());
+
+        String part1 = toUpdate.substring(0,toUpdate.indexOf(drug));
+        String part2 = toUpdate.substring(toUpdate.indexOf(drug));
+        if(part2.contains(",")){
+            part2 = part2.substring(part2.indexOf(",")+1);
+
+        }else part2 = ",";
+        toUpdate = part1.concat(part2);
+        if(toUpdate.equalsIgnoreCase(",,,"))toUpdate=",";
+        ContentValues cv = new ContentValues();
+        cv.put("list",toUpdate);
+
+        myDb.getWritableDatabase().update("Account",cv,"login='"+login+"'",null);
+
+        c.close();
+        myDb.close();
+    }
 }

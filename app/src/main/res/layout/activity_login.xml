@@ -42,7 +42,7 @@
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_email"
+                    android:hint="Login"
                     android:inputType="textEmailAddress"
                     android:maxLines="1" />
 
@@ -58,7 +58,7 @@
                     style="@style/Widget.AppCompat.AutoCompleteTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_password"
+                    android:hint="Password"
                     android:imeActionId="@+id/login"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"

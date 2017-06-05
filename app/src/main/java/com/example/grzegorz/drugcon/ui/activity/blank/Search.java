@@ -10,8 +10,10 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.grzegorz.drugcon.DataReader;
@@ -72,41 +74,49 @@ public class Search extends MvpActivity implements SearchView {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> parent, final View view, final int position, long id) {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(Search.this);
+                View mView = getLayoutInflater().inflate(R.layout.fragment_add_dialog,null);
+                mBuilder.setTitle("Add "+parent.getAdapter().getItem(position).toString()+" to list");
+                final CheckBox monday = (CheckBox) mView.findViewById(R.id.checkBox);
+                final CheckBox tuesday = (CheckBox) mView.findViewById(R.id.checkBox2);
+                final CheckBox wednesday = (CheckBox) mView.findViewById(R.id.checkBox3);
+                final CheckBox thursday = (CheckBox) mView.findViewById(R.id.checkBox4);
+                final CheckBox friday = (CheckBox) mView.findViewById(R.id.checkBox5);
+                final CheckBox saturday = (CheckBox) mView.findViewById(R.id.checkBox6);
+                final CheckBox sunday = (CheckBox) mView.findViewById(R.id.checkBox7);
+                //    final EditText times = (EditText) mView.findViewById(R.id.editText);
+                final EditText form = (EditText) mView.findViewById(R.id.textView2);
 
-                final String drug = ((TextView) view.findViewById(R.id.product_name)).getText().toString();
 
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        Search.this );
 
-                // set title
-                alertDialogBuilder.setTitle("Confirmation");
 
-                // set dialog message
-                alertDialogBuilder
-                        .setMessage("Do you want to add this to your list?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                // if this button is clicked, close
-                                // current activity
-                                mSearchPresenter.addToMyList(getIntent().getExtras().getString("login"),drug,dr);
-                                dialog.dismiss();
-                            }
-                        })
-                        .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                // if this button is clicked, just close
-                                // the dialog box and do nothing
-                                dialog.cancel();
-                            }
-                        });
+                mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String days = "days";
+                        if(monday.isChecked()){days=days.concat("1");}else days=days.concat("0");
+                        if(tuesday.isChecked()){days=days.concat("2");}else days=days.concat("0");
+                        if(wednesday.isChecked()){days=days.concat("3");}else days=days.concat("0");
+                        if(thursday.isChecked()){days=days.concat("4");}else days=days.concat("0");
+                        if(friday.isChecked()) {days=days.concat("5");}else days=days.concat("0");
+                        if(saturday.isChecked()) {days=days.concat("6");}else days=days.concat("0");
+                        if(sunday.isChecked()){days=days.concat("7");}else days=days.concat("0");
+                        if(!form.getText().toString().isEmpty()) days=days.concat("XXX"+form.getText().toString()+"YYY");
+                        mSearchPresenter.addToList(getIntent().getExtras().getString("login"),parent.getAdapter().getItem(position).toString(),days,dr);
+                        //        adapter.add(spinner.getSelectedItem().toString());
+                        //       lv.setAdapter(adapter);
+                    }
+                });
+                mBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
 
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
-                alertDialog.show();
-
+                mBuilder.setView(mView);
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
             }
         });
 
