@@ -54,6 +54,7 @@ public class MenuAcc extends MvpActivity implements MenuAccView {
         button_alarm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Alarm.class);
+                intent.putExtra("login",getIntent().getExtras().getString("login"));
                 startActivity(intent);
 
             }

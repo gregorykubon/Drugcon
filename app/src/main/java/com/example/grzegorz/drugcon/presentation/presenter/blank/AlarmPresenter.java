@@ -12,10 +12,14 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 @InjectViewState
 public class AlarmPresenter extends MvpPresenter<AlarmView> {
+
+    ArrayList<String> alarms;
+
 
     public String[] getList(String login,DataReader dr) {
         Cursor c = null;
@@ -54,9 +58,8 @@ public class AlarmPresenter extends MvpPresenter<AlarmView> {
         return yourArray;
 
     }
-    public void setAlarm(TimePicker  tp){
-
-
+    public void setAlarm(String choice){
+        alarms.add(choice);
 
 
     }

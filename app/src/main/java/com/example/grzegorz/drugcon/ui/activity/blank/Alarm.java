@@ -36,6 +36,7 @@ import java.util.Arrays;
 
 public class Alarm extends MvpActivity implements AlarmView {
 
+    public TimePicker timePicker;
     public static final String TAG = "Alarm";
     // Expandable List View Adapter
     private ExpandableListAdapter exListAdapter;
@@ -94,10 +95,10 @@ public class Alarm extends MvpActivity implements AlarmView {
             AlertDialog.Builder mBuilder = new AlertDialog.Builder(Alarm.this);
             View mView = getLayoutInflater().inflate(R.layout.fragment_add_alarm,null);
             mBuilder.setTitle("Set your alarm");
-            final TimePicker timePicker= (TimePicker) findViewById(R.id.timePicker);
+             timePicker= (TimePicker) findViewById(R.id.timePicker);
             final Spinner spinner = (Spinner) mView.findViewById(R.id.spinner_drug_list);
             String [] myList = {};
-            //myList=  mAlarmPresenter.getList(getIntent().getExtras().getString("login"), dr); //uncaught exception java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.String android.os.Bundle.getString(java.lang.String)' on a null object reference
+            myList=  mAlarmPresenter.getList(getIntent().getExtras().getString("login"), dr); //uncaught exception java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.String android.os.Bundle.getString(java.lang.String)' on a null object reference
             //Toast.makeText(Alarm.this,myList[0],Toast.LENGTH_LONG).show();
             ArrayAdapter<String> spinneradapter = new ArrayAdapter<String>(Alarm.this,android.R.layout.simple_spinner_item, myList);
 
@@ -107,6 +108,15 @@ public class Alarm extends MvpActivity implements AlarmView {
             mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    String my_choice;
+                    int hour =0;
+                    int min =0 ;
+                   // int hour = timePicker.getHour();
+                   // int min = timePicker.getMinute();
+                    my_choice="Melisa, Time:  " + hour +" " +min;
+
+                    adapter.add(my_choice);
+                    adapter.notifyDataSetChanged();
                 }
             });
             mBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -115,13 +125,11 @@ public class Alarm extends MvpActivity implements AlarmView {
                     dialog.dismiss();
                 }
             });
+
             mBuilder.setView(mView);
             AlertDialog dialog = mBuilder.create();
             dialog.show();
 
-
-            adapter.add("Cokolwiek");
-            adapter.notifyDataSetChanged();
 
         }
 
