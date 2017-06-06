@@ -59,7 +59,7 @@ public class List extends MvpActivity implements ListView {
     FloatingActionButton fab;
 
     // ArrayList for Listview
-    ArrayList<HashMap<String, String>> productList;
+    //ArrayList<HashMap<String, String>> productList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,6 +172,7 @@ public class List extends MvpActivity implements ListView {
                 mBuilder.setView(mView);
                 AlertDialog dialog = mBuilder.create();
                 dialog.show();
+
             }
         });
     }

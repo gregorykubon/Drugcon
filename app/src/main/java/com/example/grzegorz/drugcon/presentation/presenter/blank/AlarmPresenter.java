@@ -3,6 +3,7 @@ package com.example.grzegorz.drugcon.presentation.presenter.blank;
 
 import android.database.Cursor;
 import android.database.SQLException;
+import android.widget.TimePicker;
 
 import com.example.grzegorz.drugcon.DataReader;
 import com.example.grzegorz.drugcon.LoginModel;
@@ -51,6 +52,12 @@ public class AlarmPresenter extends MvpPresenter<AlarmView> {
         myDb.close();
 
         return yourArray;
+
+    }
+    public void setAlarm(TimePicker  tp){
+
+
+
 
     }
 

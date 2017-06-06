@@ -30,4 +30,5 @@ public class Settings extends MvpActivity implements SettingsView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
     }
+
 }

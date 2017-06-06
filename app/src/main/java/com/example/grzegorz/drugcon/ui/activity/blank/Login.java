@@ -42,7 +42,7 @@ public class Login extends MvpActivity implements LoginView {
 
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
+     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
