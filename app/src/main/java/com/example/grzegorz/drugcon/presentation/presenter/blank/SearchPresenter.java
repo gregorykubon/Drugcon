@@ -13,6 +13,8 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Date;
 
 @InjectViewState
 public class SearchPresenter extends MvpPresenter<SearchView> {
@@ -78,7 +80,8 @@ public class SearchPresenter extends MvpPresenter<SearchView> {
             }
         }while(c.moveToNext());
 
-        toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(","+drug+";"+days).toString();
+        toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(","+drug+";"+days+";"+ DateFormat.getDateTimeInstance().format(new Date())).toString();
+
 
         ContentValues cv = new ContentValues();
         cv.put("list",toUpdate);

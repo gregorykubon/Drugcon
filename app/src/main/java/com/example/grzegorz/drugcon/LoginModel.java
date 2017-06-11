@@ -124,6 +124,7 @@ public class LoginModel extends SQLiteOpenHelper{
             values.put("login", name);
             values.put("password", password);
             values.put("list",",");
+
             long a =  myDataBase.insert("Account", null, values);
             if(a!=-1){
                 return true;
@@ -131,7 +132,23 @@ public class LoginModel extends SQLiteOpenHelper{
             return false;
         }
 
+    public boolean update(String name,String new_password){
+        ContentValues values = new ContentValues();
 
+        values.put("password", new_password);
+
+        myDataBase.update("Account", values, "login" + " = ?",new String[] { name });
+
+        return true;
+    }
+
+    public boolean delete(String name){
+
+        myDataBase.delete("Account", "login" + " = ?",new String[] {name});
+
+
+        return true;
+    }
         // Add your public helper methods to access and get content from the database.
         // You could return cursors by doing "return myDataBase.query(....)" so it'd be easy
         // to you to create adapters for your views.

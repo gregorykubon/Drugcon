@@ -42,6 +42,15 @@
         <activity
             android:name=".ui.activity.blank.Settings"
             android:label="@string/app_name" />
+        <activity
+            android:name=".ui.activity.blank.Show_List"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".ui.activity.blank.Change_Delete"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".ui.activity.blank.Change_Update"
+            android:label="@string/app_name" />
     </application>
 
 </manifest>

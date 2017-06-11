@@ -1,8 +1,83 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.grzegorz.drugcon.blank.Settings">
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/tlo">>
 
 
-</FrameLayout>
+    <Button
+        android:id="@+id/btnviewAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+    <ListView
+        android:id="@+id/list_view1"
+        android:layout_width="fill_parent"
+        android:layout_height="900px" />
+
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/button_changedel"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.30"
+        android:text="Change Delete" />
+</LinearLayout>
+-->
+<!--
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent" android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:background="@drawable/tlo">
+
+    <Button
+        android:id="@+id/button_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List of Medicines"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/list_view1"
+        />
+
+
+    <Button
+        android:id="@+id/button_settings1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Account"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/button_list"
+        />
+    <Button
+        android:id="@+id/button_settings2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/button_settings1"
+        />
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>
+

@@ -14,7 +14,9 @@ import com.arellomobile.mvp.MvpPresenter;
 import com.example.grzegorz.drugcon.ui.activity.blank.List;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 @InjectViewState
 public class ListPresenter extends MvpPresenter<ListView> {
@@ -120,7 +122,7 @@ public class ListPresenter extends MvpPresenter<ListView> {
                 }
             }while(c.moveToNext());
 
-            toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(","+drug+";"+days).toString();
+            toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(","+drug+";"+days+";"+ DateFormat.getDateTimeInstance().format(new Date())).toString();
 
             ContentValues cv = new ContentValues();
             cv.put("list",toUpdate);
