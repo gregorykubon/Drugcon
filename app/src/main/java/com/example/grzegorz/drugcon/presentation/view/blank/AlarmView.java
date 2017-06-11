@@ -13,7 +13,8 @@ public interface AlarmView extends MvpView {
     //ListView getListView();
     //void setListAdapter(ListAdapter adapter);
    // ListAdapter getListAdapter();
-    public void onBtnclick(DataReader dr);
+
+    public void setAlarmFragment(DataReader dr);
 
 
 }
