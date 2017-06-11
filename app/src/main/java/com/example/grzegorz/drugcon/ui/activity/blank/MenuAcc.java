@@ -36,7 +36,8 @@ public class MenuAcc extends MvpActivity implements MenuAccView {
 //        setContentView(R.layout.activity_menu_acc);
         setContentView(R.layout.activity_menu_acc);
 
-        ImageView logo = (ImageView) findViewById(R.id.imageView);
+
+        ImageView logo= (ImageView) findViewById(R.id.drugcon);
         logo.setImageResource(R.drawable.logo_beztla);
 
         ImageButton button_list = (ImageButton) findViewById(R.id.button_list);
@@ -53,6 +54,7 @@ public class MenuAcc extends MvpActivity implements MenuAccView {
         button_alarm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Alarm.class);
+                intent.putExtra("login",getIntent().getExtras().getString("login"));
                 startActivity(intent);
 
             }

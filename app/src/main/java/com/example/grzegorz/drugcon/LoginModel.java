@@ -40,6 +40,7 @@ public class LoginModel extends SQLiteOpenHelper{
             super(context, DB_NAME, null, 10);
             this.myContext = context;
             this.DB_PATH = "/data/data/" + context.getPackageName() + "/" + "databases/";
+          //  this.DB_PATH = myContext.getDatabasePath(DB_NAME).getPath();
             Log.e("Path 1", DB_PATH);
         }
 

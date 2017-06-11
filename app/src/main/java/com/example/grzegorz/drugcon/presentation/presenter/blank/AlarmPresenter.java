@@ -3,6 +3,7 @@ package com.example.grzegorz.drugcon.presentation.presenter.blank;
 
 import android.database.Cursor;
 import android.database.SQLException;
+import android.widget.TimePicker;
 
 import com.example.grzegorz.drugcon.DataReader;
 import com.example.grzegorz.drugcon.LoginModel;
@@ -11,10 +12,14 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 @InjectViewState
 public class AlarmPresenter extends MvpPresenter<AlarmView> {
+
+    ArrayList<String> alarms;
+
 
     public String[] getList(String login,DataReader dr) {
         Cursor c = null;
@@ -51,6 +56,11 @@ public class AlarmPresenter extends MvpPresenter<AlarmView> {
         myDb.close();
 
         return yourArray;
+
+    }
+    public void setAlarm(String choice){
+        alarms.add(choice);
+
 
     }
 
