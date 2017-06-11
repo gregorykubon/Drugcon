@@ -126,7 +126,7 @@ public class ListPresenter extends MvpPresenter<ListView> {
 
             ContentValues cv = new ContentValues();
             cv.put("list",toUpdate);
-
+            cv.put("history",toUpdate);
             myDb.getWritableDatabase().update("Account",cv,"login='"+login+"'",null);
 
             c.close();
