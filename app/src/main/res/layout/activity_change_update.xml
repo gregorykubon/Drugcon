@@ -26,6 +26,8 @@
         android:layout_height="wrap_content"
         android:hint="Old Password"
         android:layout_centerHorizontal="true"
+        android:inputType="textPassword"
+        android:maxLines="1"
 
 
         />
@@ -37,6 +39,8 @@
         android:hint="New Password"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/editText_password_old"
+        android:inputType="textPassword"
+        android:maxLines="1"
         />
 
 
@@ -47,6 +51,8 @@
         android:hint="Confirm New Password"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/editText_password_update"
+        android:inputType="textPassword"
+        android:maxLines="1"
         />
 
 

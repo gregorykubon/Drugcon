@@ -78,39 +78,12 @@ public class Show_List extends MvpActivity implements Show_ListView {
 
         final DataReader dr = new DataReader(this);
 
-        String products[] = mShow_ListPresenter.getAll(dr);
-
-
-        String[] products_changed = new String[products.length];
-
-        for (int i = 0; i < products.length; i++) {
-            if (products[i].contains(loginName)) {
-                products_changed[i] = products[i];
-            } else products_changed[i] = null;
-        }
-
-        //usuwanko jebanych nulli
-
-        // Declaring List s
-        List list = new ArrayList();
-
-        //Iterating String array for adding to list object without empty and null elements
-        for (String string : products_changed) {
-
-            if (string != null && string.length() > 0) {
-
-                list.add(string);
-
-            }
-        }
-
-        // Converting list object to string array
-        String[] newArray = (String[]) list.toArray(new String[list.size()]);
+        String products[] = mShow_ListPresenter.getAll(loginName,dr);
 
 
         lv = (ListView) findViewById(R.id.list_view10);
 
-        adapter = new ArrayAdapter<String>(this, R.layout.content_list, R.id.product_name, newArray);
+        adapter = new ArrayAdapter<String>(this, R.layout.content_list, R.id.product_name, products);
         lv.setAdapter(adapter);
 
 

@@ -27,6 +27,8 @@
         android:layout_height="wrap_content"
         android:hint="Password"
         android:layout_centerHorizontal="true"
+        android:inputType="textPassword"
+        android:maxLines="1"
 
         />
 
@@ -38,6 +40,8 @@
         android:hint="Confirm Password"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/editText_password_delete"
+        android:inputType="textPassword"
+        android:maxLines="1"
         />
 
 
