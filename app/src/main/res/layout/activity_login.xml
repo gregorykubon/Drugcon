@@ -11,7 +11,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.grzegorz.drugcon.ui.activity.blank.Login"
     android:weightSum="1"
-    android:background="@drawable/tlo">
+    android:background="@drawable/tlo"
+    android:baselineAligned="false">
 
     <!-- Login progress -->
 

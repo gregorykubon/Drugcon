@@ -14,7 +14,7 @@ public interface AlarmView extends MvpView {
     //void setListAdapter(ListAdapter adapter);
    // ListAdapter getListAdapter();
 
-    public void setAlarmFragment(DataReader dr);
+   void setAl(DataReader dr);
 
 
 }

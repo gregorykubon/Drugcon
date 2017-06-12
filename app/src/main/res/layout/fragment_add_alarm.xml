@@ -7,84 +7,111 @@
     >
 
     <Spinner
-        android:id="@+id/spinner_drug_list"
+        android:id="@+id/medicine_list"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:padding="4dp"
+        android:layout_marginTop="28dp"
         android:layout_alignParentTop="true"
-        android:padding="4dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="35dp"
+        android:id="@+id/linearLayout3"
+        android:layout_below="@+id/medicine_list"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <CheckBox
+            android:id="@+id/monday_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/checkBox"
+            android:layout_alignStart="@+id/checkBox"
+            android:layout_below="@+id/checkBox"
+            android:layout_marginLeft="3dp"
+            android:text="Monday" />
+
+        <CheckBox
+            android:id="@+id/tuesday_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/checkBox"
+            android:layout_alignStart="@+id/checkBox"
+            android:layout_below="@+id/checkBox"
+            android:layout_marginLeft="3dp"
+            android:text="Tuesday" />
+
+        <CheckBox
+            android:id="@+id/wednesday_alarm"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/checkBox2"
+            android:layout_alignStart="@+id/checkBox2"
+            android:layout_below="@+id/checkBox2"
+            android:layout_marginLeft="3dp"
+            android:text="Wednesday" />
+
+        <CheckBox
+            android:id="@+id/thursday_alarm"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/checkBox3"
+            android:layout_alignStart="@+id/checkBox3"
+            android:layout_below="@+id/checkBox3"
+            android:layout_marginLeft="3dp"
+            android:text="Thursday" />
+
+        <CheckBox
+            android:id="@+id/friday_alarm"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/checkBox4"
+            android:layout_alignStart="@+id/checkBox4"
+            android:layout_below="@+id/checkBox4"
+            android:layout_marginLeft="3dp"
+            android:text="Friday" />
+
+        <CheckBox
+            android:id="@+id/saturday_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/checkBox5"
+            android:layout_alignStart="@+id/checkBox5"
+            android:layout_below="@+id/checkBox5"
+            android:layout_marginLeft="3dp"
+            android:text="Saturday" />
+
+        <CheckBox
+            android:id="@+id/sunday_alarm"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/checkBox6"
+            android:layout_alignStart="@+id/checkBox6"
+            android:layout_below="@+id/checkBox6"
+            android:layout_marginLeft="3dp"
+            android:text="Sunday" />
+
+    </LinearLayout>
 
     <TimePicker
         android:id="@+id/timePicker"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/spinner_drug_list" />
-
-    <CheckedTextView
-        android:id="@+id/monday_alarm"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/timePicker"
-        android:text="Monday" />
-
-    <CheckedTextView
-        android:id="@+id/tuesday_alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/timePicker"
-        android:layout_toEndOf="@+id/monday_alarm"
-        android:layout_toRightOf="@+id/monday_alarm"
-        android:text=" Tuesday" />
-
-    <CheckedTextView
-        android:id="@+id/wednesday_alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/timePicker"
-        android:layout_toEndOf="@+id/tuesday_alarm"
-        android:layout_toRightOf="@+id/tuesday_alarm"
-        android:text=" Wednesday" />
-
-    <CheckedTextView
-        android:id="@+id/thursday_alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/timePicker"
-        android:layout_toEndOf="@+id/wednesday_alarm"
-        android:layout_toRightOf="@+id/wednesday_alarm"
-        android:text=" Thursday" />
-
-    <CheckedTextView
-        android:id="@+id/friday_alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/timePicker"
-        android:layout_toEndOf="@+id/thursday_alarm"
-        android:layout_toRightOf="@+id/thursday_alarm"
-        android:text="Friday" />
-
-    <CheckedTextView
-        android:id="@+id/saturday_alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/timePicker"
-        android:layout_toEndOf="@+id/friday_alarm"
-        android:layout_toRightOf="@+id/friday_alarm"
-        android:text="Saturday" />
-
-    <CheckedTextView
-        android:id="@+id/sunday_alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sunday"
-        android:layout_alignBaseline="@+id/saturday_alarm"
-        android:layout_alignBottom="@+id/saturday_alarm"
-        android:layout_toRightOf="@+id/saturday_alarm"
-        android:layout_toEndOf="@+id/saturday_alarm" />
+        android:layout_below="@+id/medicine_list"
+        android:layout_toRightOf="@+id/linearLayout3"
+        android:visibility="visible" >
+         <requestFocus />
+    </TimePicker>
 
 </RelativeLayout>

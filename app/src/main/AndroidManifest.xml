@@ -10,6 +10,7 @@ package="com.example.grzegorz.drugcon">
 
 <!-- To access Google+ APIs: -->
 <uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="com.android.alarm.permission.SET_ALARM"></uses-permission>
 
 <application
     android:allowBackup="true"
@@ -44,6 +45,11 @@ package="com.example.grzegorz.drugcon">
     <activity
         android:name=".ui.activity.blank.Settings"
         android:label="@string/app_name" />
+    <receiver android:name=".Notification_receiver">
+        <intent-filter>
+            <action android:name="android.intent.action.DISPLAY_NOTIFICATION"></action>
+        </intent-filter>
+    </receiver>
 </application>
 
 </manifest>
