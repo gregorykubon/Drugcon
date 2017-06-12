@@ -46,6 +46,7 @@ public class LoginModel extends SQLiteOpenHelper{
 
         public void createDataBase() throws IOException {
             boolean dbExist = checkDataBase();
+       //     boolean dbExist = false;
             if (dbExist) {
 
             } else {
@@ -124,6 +125,7 @@ public class LoginModel extends SQLiteOpenHelper{
             values.put("login", name);
             values.put("password", password);
             values.put("list",",");
+            values.put("history",",");
 
             long a =  myDataBase.insert("Account", null, values);
             if(a!=-1){

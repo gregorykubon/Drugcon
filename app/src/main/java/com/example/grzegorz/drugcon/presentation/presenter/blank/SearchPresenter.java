@@ -93,6 +93,7 @@ public class SearchPresenter extends MvpPresenter<SearchView> {
 
         ContentValues cv = new ContentValues();
         cv.put("list",toUpdate);
+        cv.put("history",toUpdate);
 
         myDb.getWritableDatabase().update("Account",cv,"login='"+login+"'",null);
 
