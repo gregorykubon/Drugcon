@@ -14,6 +14,9 @@ import com.arellomobile.mvp.MvpPresenter;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 
 @InjectViewState
@@ -80,7 +83,12 @@ public class SearchPresenter extends MvpPresenter<SearchView> {
             }
         }while(c.moveToNext());
 
-        toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(","+drug+";"+days+";"+ DateFormat.getDateTimeInstance().format(new Date())).toString();
+        Calendar cal = Calendar.getInstance();
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(cal.getTime());
+
+        toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(","+drug+";"+days+";"+ formattedDate).toString();
 
 
         ContentValues cv = new ContentValues();
@@ -125,4 +133,90 @@ public class SearchPresenter extends MvpPresenter<SearchView> {
     }
 
 
+    public String checkInteraction(String login, String drug, DataReader dr) {
+        Cursor c = null;
+        LoginModel myDb = new LoginModel(dr.getContext());
+        try {
+            myDb.createDataBase();
+        } catch (IOException ioe) {
+            throw new Error("Unable to create database");
+        }
+        try {
+            myDb.openDataBase();
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
+        //     c = myDb.query("Account", null, null, null, null, null, null);
+        try {
+            c.moveToFirst();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        c = myDb.query("Account", null, null,null, null, null, null);
+        c.moveToFirst();
+        String list = null;
+
+        do{
+            if (c.getString(c.getColumnIndex("login")).equalsIgnoreCase(login)){
+                //  toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(c.getString(c.getColumnIndex("list"))).toString();
+                list = c.getString(c.getColumnIndex("list")).toString();
+
+            }
+        }while(c.moveToNext());
+
+        if(list.equalsIgnoreCase(","))return "OK";
+
+
+        String[] products = list.split(",");
+        products = Arrays.copyOfRange(products,2,products.length);
+        for(String string:products){
+            string = string.substring(0,string.indexOf(";"));
+            c = null;
+            DatabaseModel myDb2 = new DatabaseModel(dr.getContext());
+            try {
+                myDb2.createDataBase();
+            } catch (IOException ioe) {
+                throw new Error("Unable to create database");
+            }
+            try {
+                myDb2.openDataBase();
+            } catch (SQLException sqle) {
+                throw sqle;
+            }
+
+            c = myDb2.query("Drug",null,null,null,null,null,null);
+            c.moveToFirst();
+            String id = null;
+            do{
+                if (c.getString(c.getColumnIndex("name")).equalsIgnoreCase(drug)){
+                    //  toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(c.getString(c.getColumnIndex("list"))).toString();
+                    id = c.getString(c.getColumnIndex("_id")).toString();
+
+                }
+            }while(c.moveToNext());
+
+
+            c = myDb2.query("Drug_Interaction",null,null,null,null,null,null);
+            c.moveToFirst();
+            myDb2.close();
+            do{
+                if(c.getString(c.getColumnIndex("drug_id")).toString().equalsIgnoreCase(id)){{
+                    if(c.getString(c.getColumnIndex("name")).toString().equalsIgnoreCase(string)){
+                        return c.getString(c.getColumnIndex("description")).toString();
+
+                    }
+                }
+
+                }
+            }while(c.moveToNext());
+
+
+
+        }
+
+        c.close();
+
+        return "OK";
+    }
 }

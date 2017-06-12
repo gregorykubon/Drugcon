@@ -40,7 +40,7 @@ public class Show_ListPresenter extends MvpPresenter<Show_ListView> {
         c.moveToFirst();
         int i=0;
         do{
-            products[i]=(c.getString(c.getColumnIndex("login"))+": "+c.getString(c.getColumnIndex("history"))).replace(",", " ");
+            products[i]=(c.getString(c.getColumnIndex("login"))+": "+c.getString(c.getColumnIndex("list"))).replace(",", " ");
             i++;
         }while(c.moveToNext());
 

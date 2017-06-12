@@ -15,7 +15,9 @@ import com.example.grzegorz.drugcon.ui.activity.blank.List;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 
 @InjectViewState
@@ -122,11 +124,15 @@ public class ListPresenter extends MvpPresenter<ListView> {
                 }
             }while(c.moveToNext());
 
-            toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(","+drug+";"+days+";"+ DateFormat.getDateTimeInstance().format(new Date())).toString();
+            Calendar cal = Calendar.getInstance();
+
+            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+            String formattedDate = df.format(cal.getTime());
+
+            toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(","+drug+";"+days+";Added"+ formattedDate).toString();
 
             ContentValues cv = new ContentValues();
             cv.put("list",toUpdate);
-            cv.put("history",toUpdate);
             myDb.getWritableDatabase().update("Account",cv,"login='"+login+"'",null);
 
             c.close();
@@ -171,6 +177,7 @@ public class ListPresenter extends MvpPresenter<ListView> {
             part2 = part2.substring(part2.indexOf(",")+1);
 
         }else part2 = ",";
+
         toUpdate = part1.concat(part2);
         if(toUpdate.equalsIgnoreCase(",,,"))toUpdate=",";
         ContentValues cv = new ContentValues();
@@ -182,7 +189,7 @@ public class ListPresenter extends MvpPresenter<ListView> {
         myDb.close();
     }
 
-    public boolean checkInteraction(String login, String drug, DataReader dr) {
+    public String checkInteraction(String login, String drug, DataReader dr) {
         Cursor c = null;
         LoginModel myDb = new LoginModel(dr.getContext());
         try {
@@ -214,7 +221,7 @@ public class ListPresenter extends MvpPresenter<ListView> {
             }
         }while(c.moveToNext());
 
-        if(list.equalsIgnoreCase(","))return true;
+        if(list.equalsIgnoreCase(","))return "OK";
 
 
         String[] products = list.split(",");
@@ -250,9 +257,13 @@ public class ListPresenter extends MvpPresenter<ListView> {
             c.moveToFirst();
             myDb2.close();
             do{
-                if(c.getString(c.getColumnIndex("drug_id")).toString().equalsIgnoreCase(id)){
-                    c.close();
-                    return false;
+                if(c.getString(c.getColumnIndex("drug_id")).toString().equalsIgnoreCase(id)){{
+                    if(c.getString(c.getColumnIndex("name")).toString().equalsIgnoreCase(string)){
+                        return c.getString(c.getColumnIndex("description")).toString();
+
+                    }
+                }
+
                 }
             }while(c.moveToNext());
 
@@ -262,6 +273,6 @@ public class ListPresenter extends MvpPresenter<ListView> {
 
         c.close();
 
-        return true;
+        return "OK";
     }
 }

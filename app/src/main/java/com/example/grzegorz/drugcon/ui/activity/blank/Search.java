@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.grzegorz.drugcon.DataReader;
 import com.example.grzegorz.drugcon.R;
@@ -102,9 +103,13 @@ public class Search extends MvpActivity implements SearchView {
                         if(saturday.isChecked()) {days=days.concat("6");}else days=days.concat("0");
                         if(sunday.isChecked()){days=days.concat("7");}else days=days.concat("0");
                         if(!form.getText().toString().isEmpty()) days=days.concat("XXX"+form.getText().toString()+"YYY");
-                        mSearchPresenter.addToList(getIntent().getExtras().getString("login"),parent.getAdapter().getItem(position).toString(),days,dr);
-                        //        adapter.add(spinner.getSelectedItem().toString());
-                        //       lv.setAdapter(adapter);
+                       // mSearchPresenter.addToList(getIntent().getExtras().getString("login"),parent.getAdapter().getItem(position).toString(),days,dr);
+                        if(!mSearchPresenter.checkInteraction(getIntent().getExtras().getString("login"),parent.getAdapter().getItem(position).toString(),dr).equalsIgnoreCase("OK")){
+                            Toast.makeText(Search.this,mSearchPresenter.checkInteraction(getIntent().getExtras().getString("login"),parent.getAdapter().getItem(position).toString(),dr),Toast.LENGTH_LONG).show();
+                            mSearchPresenter.addToList(getIntent().getExtras().getString("login"),parent.getAdapter().getItem(position).toString(),days,dr);
+                        }else{
+                            mSearchPresenter.addToList(getIntent().getExtras().getString("login"),parent.getAdapter().getItem(position).toString(),days,dr);
+                        }
                     }
                 });
                 mBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
