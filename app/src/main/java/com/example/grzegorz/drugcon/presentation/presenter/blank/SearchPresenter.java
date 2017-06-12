@@ -88,7 +88,7 @@ public class SearchPresenter extends MvpPresenter<SearchView> {
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(cal.getTime());
 
-        toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(","+drug+";"+days+";Added"+ formattedDate).toString();
+        toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(":"+drug+";"+days+";Added"+ formattedDate).toString();
 
 
         ContentValues cv = new ContentValues();
@@ -166,10 +166,10 @@ public class SearchPresenter extends MvpPresenter<SearchView> {
             }
         }while(c.moveToNext());
 
-        if(list.equalsIgnoreCase(","))return "OK";
+        if(list.equalsIgnoreCase(":"))return "OK";
 
 
-        String[] products = list.split(",");
+        String[] products = list.split(":");
         products = Arrays.copyOfRange(products,2,products.length);
         for(String string:products){
             string = string.substring(0,string.indexOf(";"));

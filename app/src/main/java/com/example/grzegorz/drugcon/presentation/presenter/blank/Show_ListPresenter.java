@@ -41,7 +41,7 @@ public class Show_ListPresenter extends MvpPresenter<Show_ListView> {
         c.moveToFirst();
         do{
             if(c.getString(c.getColumnIndex("login")).equalsIgnoreCase(login)){
-                products = c.getString(c.getColumnIndex("history")).substring(c.getString(c.getColumnIndex("history")).indexOf(",")+1).split(",");
+                products = c.getString(c.getColumnIndex("history")).substring(c.getString(c.getColumnIndex("history")).indexOf(":")+1).split(":");
             }
         }while(c.moveToNext());
 

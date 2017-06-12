@@ -42,7 +42,7 @@ public class ListPresenter extends MvpPresenter<ListView> {
         c.moveToFirst();
         do{
             if(c.getString(c.getColumnIndex("login")).equalsIgnoreCase(login)){
-                products = c.getString(c.getColumnIndex("list")).substring(c.getString(c.getColumnIndex("list")).indexOf(",")+1).split(",");
+                products = c.getString(c.getColumnIndex("list")).substring(c.getString(c.getColumnIndex("list")).indexOf(":")+1).split(":");
             }
         }while(c.moveToNext());
 
@@ -129,7 +129,7 @@ public class ListPresenter extends MvpPresenter<ListView> {
             SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
             String formattedDate = df.format(cal.getTime());
 
-            toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(","+drug+";"+days+";Added"+ formattedDate).toString();
+            toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(":"+drug+";"+days+";Added"+ formattedDate).toString();
 
             ContentValues cv = new ContentValues();
             cv.put("list",toUpdate);
@@ -174,13 +174,13 @@ public class ListPresenter extends MvpPresenter<ListView> {
 
         String part1 = toUpdate.substring(0,toUpdate.indexOf(drug));
         String part2 = toUpdate.substring(toUpdate.indexOf(drug));
-        if(part2.contains(",")){
-            part2 = part2.substring(part2.indexOf(",")+1);
+        if(part2.contains(":")){
+            part2 = part2.substring(part2.indexOf(":")+1);
 
-        }else part2 = ",";
+        }else part2 = ":";
 
         toUpdate = part1.concat(part2);
-        if(toUpdate.equalsIgnoreCase(",,,"))toUpdate=",";
+        if(toUpdate.equalsIgnoreCase(":::"))toUpdate=":";
         ContentValues cv = new ContentValues();
         cv.put("list",toUpdate);
 
@@ -222,10 +222,10 @@ public class ListPresenter extends MvpPresenter<ListView> {
             }
         }while(c.moveToNext());
 
-        if(list.equalsIgnoreCase(","))return "OK";
+        if(list.equalsIgnoreCase(":"))return "OK";
 
 
-        String[] products = list.split(",");
+        String[] products = list.split(":");
         products = Arrays.copyOfRange(products,2,products.length);
         for(String string:products){
             string = string.substring(0,string.indexOf(";"));
