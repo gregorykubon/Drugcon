@@ -45,14 +45,22 @@ public class ListPresenter extends MvpPresenter<ListView> {
                 products = c.getString(c.getColumnIndex("list")).substring(c.getString(c.getColumnIndex("list")).indexOf(":")+1).split(":");
             }
         }while(c.moveToNext());
-
-        int i = 1;
+        String[] products1 = new String[products.length];
+        int i = 0;
         while(i<products.length){
-            products[i]=products[i].substring(0,products[i].indexOf(";"));
+            if(!products[i].equals("")){
+                products1[i]=products[i];
+            }else products1[i]=":";
+            i++;
+        }
+        
+        i = 1;
+        while(i<products1.length){
+            products1[i]=products1[i].substring(0,products1[i].indexOf(";"));
             i++;
         }
 
-        String[] yourArray = Arrays.copyOfRange(products, 1, products.length);
+        String[] yourArray = Arrays.copyOfRange(products1, 1, products1.length);
 
         c.close();
         myDb.close();

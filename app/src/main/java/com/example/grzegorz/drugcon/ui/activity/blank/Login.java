@@ -108,8 +108,12 @@ public class Login extends MvpActivity implements LoginView {
             @Override
             public void onClick(View view) {
                 try {
-                    if(mLoginPresenter.attemptRegister(mEmailView.getText().toString(),mPasswordView.getText().toString(),dr)) {
+                    if(mEmailView.getText().toString().equals("")||mPasswordView.getText().toString().equals("")){
+                        Toast.makeText(Login.this,"Password Or/And Login is empty",Toast.LENGTH_LONG).show();
+                    }else if(mLoginPresenter.attemptRegister(mEmailView.getText().toString(),mPasswordView.getText().toString(),dr)) {
                         Toast.makeText(Login.this,"Registered successfully",Toast.LENGTH_LONG).show();
+                    }else {
+                        Toast.makeText(Login.this,"Login already exists",Toast.LENGTH_LONG).show();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

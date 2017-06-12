@@ -153,8 +153,40 @@ public class List extends MvpActivity implements ListView {
                         if(sunday.isChecked()){days=days.concat("7");}else days=days.concat("0");
                         if(!form.getText().toString().isEmpty()) days=days.concat("XXX"+form.getText().toString()+"YYY");
                         if(!mListPresenter.checkInteraction(getIntent().getExtras().getString("login"),spinner.getSelectedItem().toString(),dr).equalsIgnoreCase("OK")){
-                            Toast.makeText(List.this,mListPresenter.checkInteraction(getIntent().getExtras().getString("login"),spinner.getSelectedItem().toString(),dr),Toast.LENGTH_LONG).show();
-                            mListPresenter.addToList(getIntent().getExtras().getString("login"),spinner.getSelectedItem().toString(),days,dr);
+                           // Toast.makeText(List.this,mListPresenter.checkInteraction(getIntent().getExtras().getString("login"),spinner.getSelectedItem().toString(),dr),Toast.LENGTH_LONG).show();
+                            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                                    List.this );
+
+                            // set title
+                            alertDialogBuilder.setTitle("Interaction detected");
+
+                            // set dialog message
+                            final String finalDays = days;
+                            alertDialogBuilder
+                                    .setMessage(mListPresenter.checkInteraction(getIntent().getExtras().getString("login"),spinner.getSelectedItem().toString(),dr)+". Are you sure you want to add this to your list?")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,int id) {
+                                            // if this button is clicked, close
+                                            // current activity
+                                            mListPresenter.addToList(getIntent().getExtras().getString("login"),spinner.getSelectedItem().toString(), finalDays,dr);
+                                            dialog.dismiss();
+                                        }
+                                    })
+                                    .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,int id) {
+                                            // if this button is clicked, just close
+                                            // the dialog box and do nothing
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            // create alert dialog
+                            AlertDialog alertDialog = alertDialogBuilder.create();
+
+                            // show it
+                            alertDialog.show();
+
                         }else{
                             mListPresenter.addToList(getIntent().getExtras().getString("login"),spinner.getSelectedItem().toString(),days,dr);
                         }

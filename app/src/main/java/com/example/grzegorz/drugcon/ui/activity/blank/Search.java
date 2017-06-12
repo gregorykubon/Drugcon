@@ -105,8 +105,38 @@ public class Search extends MvpActivity implements SearchView {
                         if(!form.getText().toString().isEmpty()) days=days.concat("XXX"+form.getText().toString()+"YYY");
                        // mSearchPresenter.addToList(getIntent().getExtras().getString("login"),parent.getAdapter().getItem(position).toString(),days,dr);
                         if(!mSearchPresenter.checkInteraction(getIntent().getExtras().getString("login"),parent.getAdapter().getItem(position).toString(),dr).equalsIgnoreCase("OK")){
-                            Toast.makeText(Search.this,mSearchPresenter.checkInteraction(getIntent().getExtras().getString("login"),parent.getAdapter().getItem(position).toString(),dr),Toast.LENGTH_LONG).show();
-                            mSearchPresenter.addToList(getIntent().getExtras().getString("login"),parent.getAdapter().getItem(position).toString(),days,dr);
+                            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                                    Search.this );
+
+                            // set title
+                            alertDialogBuilder.setTitle("Interaction detected");
+
+                            // set dialog message
+                            final String finalDays = days;
+                            alertDialogBuilder
+                                    .setMessage(mSearchPresenter.checkInteraction(getIntent().getExtras().getString("login"),parent.getAdapter().getItem(position).toString(),dr)+". Are you sure you want to add this to your list?")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,int id) {
+                                            // if this button is clicked, close
+                                            // current activity
+                                            mSearchPresenter.addToList(getIntent().getExtras().getString("login"),parent.getAdapter().getItem(position).toString(), finalDays,dr);
+                                            dialog.dismiss();
+                                        }
+                                    })
+                                    .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,int id) {
+                                            // if this button is clicked, just close
+                                            // the dialog box and do nothing
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            // create alert dialog
+                            AlertDialog alertDialog = alertDialogBuilder.create();
+
+                            // show it
+                            alertDialog.show();
                         }else{
                             mSearchPresenter.addToList(getIntent().getExtras().getString("login"),parent.getAdapter().getItem(position).toString(),days,dr);
                         }
