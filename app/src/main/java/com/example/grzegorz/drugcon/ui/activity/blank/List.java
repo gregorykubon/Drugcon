@@ -152,8 +152,9 @@ public class List extends MvpActivity implements ListView {
                         if(saturday.isChecked()) {days=days.concat("6");}else days=days.concat("0");
                         if(sunday.isChecked()){days=days.concat("7");}else days=days.concat("0");
                         if(!form.getText().toString().isEmpty()) days=days.concat("XXX"+form.getText().toString()+"YYY");
-                        if(!mListPresenter.checkInteraction(getIntent().getExtras().getString("login"),spinner.getSelectedItem().toString(),dr)){
-                            Toast.makeText(List.this,"Cant add, interaction found",Toast.LENGTH_LONG).show();
+                        if(!mListPresenter.checkInteraction(getIntent().getExtras().getString("login"),spinner.getSelectedItem().toString(),dr).equalsIgnoreCase("OK")){
+                            Toast.makeText(List.this,mListPresenter.checkInteraction(getIntent().getExtras().getString("login"),spinner.getSelectedItem().toString(),dr),Toast.LENGTH_LONG).show();
+                            mListPresenter.addToList(getIntent().getExtras().getString("login"),spinner.getSelectedItem().toString(),days,dr);
                         }else{
                             mListPresenter.addToList(getIntent().getExtras().getString("login"),spinner.getSelectedItem().toString(),days,dr);
                         }

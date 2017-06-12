@@ -76,6 +76,17 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
             throw sqle;
         }
 
+        c = myDb.query("Account", null, null,null, null, null, null);
+        c.moveToFirst();
+        String toUpdate = null;
+
+        do{
+            if (c.getString(c.getColumnIndex("login")).equalsIgnoreCase(name)){
+                //  toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(c.getString(c.getColumnIndex("list"))).toString();
+                return false;
+            }
+        }while(c.moveToNext());
+
         if(myDb.register(name,pass))return true;
 
         return false;

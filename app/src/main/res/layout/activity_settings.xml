@@ -1,9 +1,50 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.grzegorz.drugcon.ui.activity.blank.Settings"
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+
+    android:orientation="vertical"
     android:background="@drawable/tlo">
 
+    <Button
+        android:id="@+id/button_list"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List of Medicines"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/list_view1"
+        />
 
-</android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/button_settings1"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Account"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/button_list"
+        />
+    <Button
+        android:id="@+id/button_settings2"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/button_settings1"
+        />
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>
+

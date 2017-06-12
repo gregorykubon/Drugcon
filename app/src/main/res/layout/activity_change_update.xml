@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.grzegorz.drugcon.ui.activity.blank.Change_Delete"
+    android:weightSum="1"
+    android:background="@drawable/tlo">
+
+    <!-- Login progress -->
+
+
+
+
+
+
+    <EditText
+        android:id="@+id/editText_password_old"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Old Password"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"
+        android:maxLines="1"
+
+
+        />
+
+    <EditText
+        android:id="@+id/editText_password_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="New Password"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/editText_password_old"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        />
+
+
+    <EditText
+        android:id="@+id/editText_confirm_password_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Confirm New Password"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/editText_password_update"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        />
+
+
+
+
+    <Button
+        android:id="@+id/button_change_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/editText_confirm_password_update"
+        />
+
+
+
+
+
+</RelativeLayout>
