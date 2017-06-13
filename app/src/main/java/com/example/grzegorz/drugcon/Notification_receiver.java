@@ -25,8 +25,8 @@ public class Notification_receiver extends BroadcastReceiver{
         NotificationCompat.Builder builder =   new NotificationCompat.Builder(context)
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(android.R.drawable.arrow_up_float)
-                .setContentTitle("My first alarm")
-                .setContentText(" My content text")
+                .setContentTitle("Remember to take your medicine")
+                .setContentText(" Click here to see your alarm's list")
                 .setAutoCancel(true);
         notification.notify(100, builder.build());
     }

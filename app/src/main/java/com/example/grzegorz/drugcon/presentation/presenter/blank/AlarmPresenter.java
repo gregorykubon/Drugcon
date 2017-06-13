@@ -228,11 +228,18 @@ public class AlarmPresenter extends MvpPresenter<AlarmView> {
                 //  toUpdate = new StringBuilder(String.valueOf(toUpdate)).append(c.getString(c.getColumnIndex("list"))).toString();
                 alarms[i]="Days:";
                 alarms[i]=alarms[i].concat(c.getString(c.getColumnIndex("days")));
-                alarms[i]=alarms[i].concat("Hour:");
+                alarms[i]=alarms[i].replace("2","Monday");
+                alarms[i]=alarms[i].replace("3","Tuesday");
+                alarms[i]=alarms[i].replace("4","Wednesday");
+                alarms[i]=alarms[i].replace("5","Thursday");
+                alarms[i]=alarms[i].replace("6","Friday");
+                alarms[i]=alarms[i].replace("7","Saturday");
+                alarms[i]=alarms[i].replace("1","Sunday");
+                alarms[i]=alarms[i].concat(" Time:");
                 alarms[i]=alarms[i].concat(c.getString(c.getColumnIndex("hour")));
-                alarms[i]=alarms[i].concat("Minute:");
+                alarms[i]=alarms[i].concat(":");
                 alarms[i]=alarms[i].concat(c.getString(c.getColumnIndex("minute")));
-                alarms[i]=alarms[i].concat("DrugName:");
+                alarms[i]=alarms[i].concat(" Drug name: ");
                 alarms[i]=alarms[i].concat(c.getString(c.getColumnIndex("drug_name")));
                 i++;
             }

@@ -92,7 +92,7 @@ public class Alarm extends MvpActivity implements AlarmView {
                 timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
 
                     public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                        Toast.makeText(Alarm.this, "On change listener", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Alarm.this, "On change listener", Toast.LENGTH_SHORT).show();
                         mAlarmPresenter.hour = timePicker.getCurrentHour();
                         mAlarmPresenter.min = timePicker.getCurrentMinute();
                     }
@@ -175,7 +175,9 @@ public class Alarm extends MvpActivity implements AlarmView {
                         } if(sun.isChecked()){
                             outp = outp.concat(",1");
                         }
-
+                        mAlarmPresenter.hour = timePicker.getCurrentHour();
+                        mAlarmPresenter.min = timePicker.getCurrentMinute();
+                        mAlarmPresenter.my_choice=spinner.getSelectedItem().toString();
                         mAlarmPresenter.addAlarm(getApplicationContext(), alarmManager);
                         mAlarmPresenter.putAlarmInDatabase(mAlarmPresenter.my_choice, getIntent().getExtras().getString("login"), outp, mAlarmPresenter.hour, mAlarmPresenter.min, dr);
                         adapter.notifyDataSetChanged();
