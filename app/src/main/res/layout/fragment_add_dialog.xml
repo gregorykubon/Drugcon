@@ -16,12 +16,11 @@
         android:text="Monday"
         tools:layout_editor_absoluteY="16dp"
         tools:layout_editor_absoluteX="4dp"
-        android:layout_marginLeft="45dp"
-        android:layout_marginStart="45dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginStart="44dp"
         android:layout_below="@+id/spinner"
         android:layout_toRightOf="@+id/guideline"
-        android:layout_toEndOf="@+id/guideline"
-        android:layout_marginTop="47dp" />
+        android:layout_toEndOf="@+id/guideline" />
 
     <CheckBox
         android:id="@+id/checkBox2"

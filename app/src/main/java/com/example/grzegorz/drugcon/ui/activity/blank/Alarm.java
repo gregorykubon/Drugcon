@@ -69,7 +69,7 @@ public class Alarm extends MvpActivity implements AlarmView {
         mAlarmPresenter = new AlarmPresenter();
         listView = (ListView) findViewById(R.id.alarm_list);
         String [] lista = {};
-              //  lista= mAlarmPresenter.readMyAlarms(getIntent().getExtras().getString("login"),dr);
+                lista= mAlarmPresenter.readMyAlarms(getIntent().getExtras().getString("login"),dr);
 
         adapter = new ArrayAdapter<String>(Alarm.this, android.R.layout.simple_list_item_1, lista);
                 //mAlarmPresenter.readMyAlarms(getIntent().getExtras().getString("login"),dr));

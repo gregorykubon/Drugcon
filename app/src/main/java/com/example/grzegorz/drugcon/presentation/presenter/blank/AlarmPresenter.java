@@ -35,7 +35,7 @@ public class AlarmPresenter extends MvpPresenter<AlarmView> {
     public int min= 0;
 
     public Calendar calendar;
-    public String daysString =" ";
+    public String daysString =null;
 
 
     public String[] getList(String login,DataReader dr) {
@@ -98,7 +98,7 @@ public class AlarmPresenter extends MvpPresenter<AlarmView> {
 
     public void addAlarm(Context context, AlarmManager alarmManager){
 
-        if ( daysString == null ) daysString = "1,3";
+        if ( daysString == null ) daysString = "1";
         String [] days_numbers_str = daysString.split(",");
         int[] days_numbers = new int[days_numbers_str.length];
         for(int i = 0;i < days_numbers_str.length;i++)
@@ -202,6 +202,7 @@ public class AlarmPresenter extends MvpPresenter<AlarmView> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        if(c.getCount()==0)return new String[0];
 
         int i=0;
         do{
@@ -210,7 +211,7 @@ public class AlarmPresenter extends MvpPresenter<AlarmView> {
                 i++;
             }
         }while(c.moveToNext());
-        String[] alarms = new String[i+1];
+        String[] alarms = new String[i];
         i=0;
         c.moveToFirst();
         do{
