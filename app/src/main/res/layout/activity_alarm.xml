@@ -1,32 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <RelativeLayout android:background="@drawable/tlo"
+    android:orientation="vertical" android:id="@+id/relative"
     android:layout_height="match_parent"
-    android:id="@+id/relative"
-    android:orientation="vertical"
-    android:background="@drawable/tlo">
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- List View -->
+<!-- List View -->
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/button_addAlarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp"
-        android:clickable="true"
-        android:src="@drawable/add_alarm"
-        app:elevation="4dp" />
 
-    <ListView
-        android:id="@+id/alarm_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+<android.support.design.widget.FloatingActionButton
+    android:id="@+id/button_addAlarm"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    app:elevation="4dp" android:src="@drawable/add_alarm"
+    android:clickable="true" android:layout_marginRight="16dp"
+    android:layout_marginBottom="16dp" android:layout_alignParentRight="true"
+    android:layout_alignParentBottom="true"/>
+
+<ListView
+    android:id="@+id/alarm_list"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentLeft="true"/>
 
 </RelativeLayout>

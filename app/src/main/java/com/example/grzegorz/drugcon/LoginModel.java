@@ -46,8 +46,8 @@ public class LoginModel extends SQLiteOpenHelper{
 
 
         public void createDataBase() throws IOException {
-            boolean dbExist = checkDataBase();
-       //     boolean dbExist = false;
+          boolean dbExist = checkDataBase();
+        // boolean dbExist = false;
             if (dbExist) {
 
             } else {
@@ -88,7 +88,6 @@ public class LoginModel extends SQLiteOpenHelper{
             myInput.close();
 
         }
-
 
         public void openDataBase() throws SQLException {
 

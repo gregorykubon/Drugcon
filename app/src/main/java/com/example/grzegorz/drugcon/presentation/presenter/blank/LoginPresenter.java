@@ -39,7 +39,7 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
         }
         //     c = myDb.query("Account", null, null, null, null, null, null);
         try {
-            c.moveToFirst();
+       //     c.moveToFirst();
         } catch (Exception e) {
             e.printStackTrace();
         }
