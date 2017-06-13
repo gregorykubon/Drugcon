@@ -81,142 +81,122 @@ public class Alarm extends MvpActivity implements AlarmView {
             @Override
             public void onClick(View v) {
 
-                setAl(dr);
-                mAlarmPresenter.addAlarm(getApplicationContext(), alarmManager);
-                mAlarmPresenter.putAlarmInDatabase(mAlarmPresenter.my_choice, getIntent().getExtras().getString("login"), mAlarmPresenter.daysString, mAlarmPresenter.hour, mAlarmPresenter.min, dr);
-                adapter.notifyDataSetChanged();
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(Alarm.this);
+                View mView = getLayoutInflater().inflate(R.layout.fragment_add_alarm, null);
+                mBuilder.setTitle("Set your alarm");
+                final Spinner spinner = (Spinner) mView.findViewById(R.id.medicine_list);
+                String[] myList = {};
+                timePicker = (TimePicker) mView.findViewById(R.id.timePicker);
+
+
+                timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+
+                    public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                        Toast.makeText(Alarm.this, "On change listener", Toast.LENGTH_SHORT).show();
+                        mAlarmPresenter.hour = timePicker.getCurrentHour();
+                        mAlarmPresenter.min = timePicker.getCurrentMinute();
+                    }
+                });
+                m = (CheckBox) mView.findViewById(R.id.monday_alarm);
+                t = (CheckBox) mView.findViewById(R.id.tuesday_alarm);
+                w = (CheckBox) mView.findViewById(R.id.wednesday_alarm);
+                th = (CheckBox) mView.findViewById(R.id.thursday_alarm);
+                f = (CheckBox) mView.findViewById(R.id.friday_alarm);
+                s = (CheckBox) mView.findViewById(R.id.saturday_alarm);
+                sun = (CheckBox) mView.findViewById(R.id.sunday_alarm);
+
+              /*  t.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getCheckedDays();
+                    }
+                });
+                w.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getCheckedDays();
+                    }
+                });
+                m.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getCheckedDays();
+                    }
+                });
+                th.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getCheckedDays();
+                    }
+                });
+                f.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getCheckedDays();
+                    }
+                });
+                s.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getCheckedDays();
+
+                    }
+                });
+                sun.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getCheckedDays();
+                    }
+                });*/
+
+                myList = mAlarmPresenter.getList(getIntent().getExtras().getString("login"), dr);
+                ArrayAdapter<String> spinneradapter = new ArrayAdapter<String>(Alarm.this,android.R.layout.simple_spinner_item,myList);
+                spinneradapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(spinneradapter);
+
+                mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String outp = "";
+
+                        if (m.isChecked()){
+                            outp = outp.concat(",2");
+                        } if(t.isChecked()){
+                            outp = outp.concat(",3");
+                        } if(w.isChecked()){
+                            outp = outp.concat(",4");
+                        } if(th.isChecked()){
+                            outp = outp.concat(",5");
+                        } if(f.isChecked()){
+                            outp = outp.concat(",6");
+                        } if(s.isChecked()){
+                            outp = outp.concat(",7");
+                        } if(sun.isChecked()){
+                            outp = outp.concat(",1");
+                        }
+
+                        mAlarmPresenter.addAlarm(getApplicationContext(), alarmManager);
+                        mAlarmPresenter.putAlarmInDatabase(mAlarmPresenter.my_choice, getIntent().getExtras().getString("login"), outp, mAlarmPresenter.hour, mAlarmPresenter.min, dr);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                mBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                mBuilder.setView(mView);
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
+
             }
 
         });
 
     }
 
-    public void setAl(DataReader dr) {
-
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(Alarm.this);
-        View mView = getLayoutInflater().inflate(R.layout.fragment_add_alarm, null);
-        mBuilder.setTitle("Set your alarm");
-        final Spinner spinner = (Spinner) mView.findViewById(R.id.medicine_list);
-        String[] myList = {};
-        timePicker = (TimePicker) mView.findViewById(R.id.timePicker);
-
-
-        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-
-            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                Toast.makeText(Alarm.this, "On change listener", Toast.LENGTH_SHORT).show();
-                mAlarmPresenter.hour = timePicker.getCurrentHour();
-                mAlarmPresenter.min = timePicker.getCurrentMinute();
-            }
-        });
-        m = (CheckBox) mView.findViewById(R.id.monday_alarm);
-        t = (CheckBox) mView.findViewById(R.id.tuesday_alarm);
-        w = (CheckBox) mView.findViewById(R.id.wednesday_alarm);
-        th = (CheckBox) mView.findViewById(R.id.thursday_alarm);
-        f = (CheckBox) mView.findViewById(R.id.friday_alarm);
-        s = (CheckBox) mView.findViewById(R.id.saturday_alarm);
-        sun = (CheckBox) mView.findViewById(R.id.sunday_alarm);
-
-        t.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-             getCheckedDays();
-            }
-        });
-        w.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               getCheckedDays();
-            }
-        });
-        m.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getCheckedDays();
-            }
-        });
-        th.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getCheckedDays();
-            }
-        });
-        f.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getCheckedDays();
-            }
-        });
-        s.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getCheckedDays();
-
-            }
-        });
-        sun.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getCheckedDays();
-            }
-        });
-
-        myList = mAlarmPresenter.getList(getIntent().getExtras().getString("login"), dr);
-        ArrayAdapter<String> spinneradapter = new ArrayAdapter<String>(Alarm.this, android.R.layout.simple_spinner_item, myList);
-        spinner.setAdapter(spinneradapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mAlarmPresenter.my_choice = (String) spinner.getSelectedItem();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                mAlarmPresenter.my_choice = spinner.getSelectedItem().toString();
-            }
-        });
-
-
-        mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        mBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        mBuilder.setView(mView);
-        AlertDialog dialog = mBuilder.create();
-        dialog.show();
-
-
-    }
-
-    public void getCheckedDays(){
-        String outp = "";
-
-        if (m.isChecked()){
-            outp = outp + ",2";
-        } if(t.isChecked()){
-            outp = outp + ",3";
-        } if(w.isChecked()){
-            outp = outp + ",4";
-        } if(th.isChecked()){
-            outp = outp + ",5";
-        } if(f.isChecked()){
-            outp = outp + ",6";
-        } if(s.isChecked()){
-            outp = outp + ",7";
-        } if(sun.isChecked()){
-            outp = outp + ",1";
-        }
-     mAlarmPresenter.daysString = outp.substring(1);
-    }
 }
 
 

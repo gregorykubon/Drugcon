@@ -90,7 +90,7 @@ public class List extends MvpActivity implements ListView {
 
                 // set dialog message
                 alertDialogBuilder
-                        .setMessage("Do you want to delete this to your list?")
+                        .setMessage("Do you want to delete this from your list?")
                         .setCancelable(false)
                         .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {

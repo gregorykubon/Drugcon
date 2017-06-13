@@ -14,8 +14,7 @@ public interface AlarmView extends MvpView {
     //void setListAdapter(ListAdapter adapter);
    // ListAdapter getListAdapter();
 
-   void setAl(DataReader dr);
-  void  getCheckedDays();
+
 
 
 }
